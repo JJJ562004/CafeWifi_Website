@@ -125,6 +125,18 @@ def cafes():
     print(all_cafes)
     return render_template('cafes.html', cafes=all_cafes)
 
+@app.route('/edit', methods =['GET', 'POST'])
+def edit_cafe():
+    cafe_id = request.args.get('id')
+    cafe = db.get_or_404(Cafe, cafe_id)
+
+    form = CafeForm(obj=cafe)
+    if form.validate_on_submit():
+        form.populate_obj(cafe)
+        db.session.commit()
+        return redirect(url_for('cafes'))
+    return render_template("add.html", form=form)
+
 @app.route("/delete")
 def delete_cafe():
     cafe_id = request.args.get('id')

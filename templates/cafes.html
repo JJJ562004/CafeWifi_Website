@@ -35,7 +35,8 @@
                     <td>{{ cafe.can_take_calls }}</td>
                     <td>{{ cafe.seats }}</td>
                     <td>{{ cafe.coffee_price }}</td>
-                    <td><a href="{{ url_for('delete_cafe', id=cafe.id) }}" style="color: red">Delete</a></td>
+                    <td><a class="btn btn-danger" role="button" href="{{ url_for('delete_cafe', id=cafe.id) }}" style="color:white">X</a></td>
+                    <td><a class="btn btn-success" role="button" href="{{ url_for('edit_cafe', id=cafe.id) }}" style="color:white">Edit</a></td>
                 </tr>
                 {% endfor %}
                 </tbody>
